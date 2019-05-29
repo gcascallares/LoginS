@@ -1,0 +1,61 @@
+#nivelseguridad {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.nivelSeguridad {
+}
+
+.nivelSeguridad > p {
+  margin-right: 15px;
+}
+
+.nivelSeguridad > span#nivelseguridad {}
+
+.nivelesColores {
+  height: 10px;
+    left: 25px;
+    margin: 20px;
+    align-items: center;
+    margin-left: 39%;
+}
+
+.spanNivelesColores {
+  //background: #fff;
+  width: 0;
+  height: 10px;
+  display: inline-block;
+
+  background: url(../img/passlvl.png) no-repeat;
+ 
+  /*border: 1px solid #f00;
+  right: 120px;*/
+}
+
+.bajo,
+.medio,
+.alto,
+.muyAlto {
+  height: 10px;
+  
+}
+
+.spanNivelesColores.nulo {
+ width:0px;
+}
+
+.spanNivelesColores.bajo {
+  width: 47px;
+}
+
+.spanNivelesColores.medio {
+  width: 94px;
+}
+
+.spanNivelesColores.alto {
+  width: 141px;
+}
+
+.spanNivelesColores.muyAlto {
+  width: 188px;
+}

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+
+	<!--Se indica cual es la fuente de datos de la aplicación, es decir donde 
+		está y que usuario y password -->
+	<!--se va a conectar a la base de datos, es necesario modificarlo si se 
+		cambia de nmotor de base de datos -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
+
+		<property name="url" value="jdbc:hsqldb:file:/seguridad/db/script" />
+		<!-- <property name="url" value="jdbc:hsqldb:file:/opt/db/testdb"/> <property 
+			name="url" value="jdbc:hsqldb:file:/opt/db/testdb", "SA", "" /> <property 
+			name="url" value="jdbc:hsqldb:mem:db_" /> -->
+		<property name="username" value="sa" />
+		<property name="password" value="" />
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- Properties -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.validator.apply_to_ddl">false</prop>
+				<prop key="hibernate.validator.autoregister_listeners">false</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.format_sql">false</prop>
+				<!--Para indicar si hibernate genera el modelo de datos al startup -->
+				<!--create: lo crea siempre -->
+				<!--update: aplica cambios realizados -->
+				<!--none: no modifica nunca el esquema de datos -->
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+		<property name="packagesToScan">
+			<list>
+				<value>ar.edu.unlam.seguridad.modelo</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+</beans>
